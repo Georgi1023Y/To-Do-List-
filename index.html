@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url('static/joanna-kosinska-1_CMoFsPfso-unsplash.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+
+<form method="POST">
+    <div class="container mt-5">
+        <h1 class="text-center" style="color: black; font-family: Roboto; font-size: 40px;">Create your to-do list below</h1>
+        <div class="row mt-4">
+            <div class="col-md-6 offset-md-3">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="taskInput" name="task_description" placeholder="Add a new task">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" id="addTaskButton" style="font-family: Roboto; font-size: 20px;">Add</button>
+                    </div>
+                </div>
+
+             <ul class="list-group" id="taskList">
+                 {% for task_index, task in tasks %}
+                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                         {{ task }}
+                         <div>
+                             <a href="{{ url_for('delete_task', task_index=task_index) }}" class="btn btn-link btn-svg">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                   <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                 </svg>
+                             </a>
+
+                         </div>
+                     </li>
+                 {% endfor %}
+             </ul>
+            </div>
+        </div>
+    </div>
+</form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
